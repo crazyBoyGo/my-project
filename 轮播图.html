@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				
+				padding: 0px;
+				margin: 0px;
+			}
+			ul{
+				list-style: none;
+			}
+			#wrap{
+				height: 240px;
+				width: 670px;
+				margin: 0 auto;
+				position:relative;
+			}
+			#wrap #box{
+				width: 9999px;
+				position: absolute;
+			}
+			#wrap #box li{
+				float: left;
+				position: absolute;
+			}
+			
+			#wrap #icon{
+			z-index: 8;	
+			height: 30px;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+				
+			}
+			#wrap #icon li{
+				height: 20px;
+				width: 20px;
+				border-radius: 50%;
+				background: blue;
+				opacity: 0.6;	
+				float: left;
+				margin: 5px;
+				text-align: center;
+			
+			}
+			#wrap #icon li:hover{
+				cursor: pointer;
+			}
+			
+			#wrap #icon li.current{
+				opacity: 1;
+				background: red;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="box">
+				<li style="z-index: 6"><img src="images/1.jpg"/></li>
+				<li style="z-index: 5"><img src="images/2.jpg"/></li>
+				<li style="z-index: 4"><img src="images/3.jpg"/></li>
+				<li style="z-index: 3"><img src="images/4.jpg"/></li>
+				<li style="z-index: 2"><img src="images/5.jpg"/></li>
+				<li style="z-index: 1"><img src="images/6.jpg"/></li>
+			</ul>
+	
+		<ul id="icon">
+			<li class="current">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<script src="my.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			icon.onclick = function(ev){
+				totals = new Toltal(ev)
+							
+			}
+			
+			
+			
+			function Toltal(ev){
+				this.box = document.getElementById('box')
+				this.boxli = document.querySelectorAll('#box li')
+				this.icon = document.getElementById('icon')
+				this.iocnli = document.querySelectorAll("#icon li")
+				this.timer;
+				this.index;
+				clearInterval(this.timer)
+				this.ev = ev || window.event
+				this.target = ev.target || ev.srcElement
+				if(this.target.tagName == 'LI'){
+					debugger
+					var showImage = new ShowImage(this.target.innerHTML - 1,this.boxli,this.iocnli)
+					
+				}
+				
+			}
+			
+			function ShowImage(index,elements,icons){
+				this.elementsLength = elements.length
+				this.elements = elements
+				this.icons = icons
+				
+				for(var i =0;i < this.elementsLength;i++){
+					 
+					 this.icons[i].className = ''
+					  fadeOut(this.elements[i],500,function(ele){
+					  	ele.style.display = 'none';
+					  	
+					  })
+					  
+					}
+					this.icons[index].className = 'current'
+					this.elements[index].style.display = 'block';
+					fadeIn(this.elements[index],1000)
+				
+				
+			}
+				
+		
+			
+//			function AutoPlay(index){
+//				
+//				this.index  =  index || 0;
+//				timer = setInterval(function(){
+//					if(this.index == 5){
+//					
+//					this.index =0
+//				}
+//				else{
+//					this.index++
+//				}
+//				var showImage = new ShowImage(index,boxli,iocnli)
+//				},2000)
+//				
+//			}
+//			
+//			
+//			var autoplay = new AutoPlay()
+			
+			
+			
+			
+		</script>
+		
+	</div>	
+		
+	</body>
+</html>
